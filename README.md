@@ -1,10 +1,10 @@
 ## WeatherApi
 
-### Install Git and DotNet
-sudo dnf install git -y
-sudo dnf install dotnet-sdk-10.0 -y
-sudo dnf install aspnetcore-runtime-10.0 -y
-sudo dnf install dotnet-runtime-10.0 -y
+### Install Git and DotNet (RHEL 9 VM)
+- sudo dnf install git -y
+- sudo dnf install dotnet-sdk-10.0 -y
+- sudo dnf install aspnetcore-runtime-10.0 -y
+- sudo dnf install dotnet-runtime-10.0 -y
 
 dotnet --version
 
