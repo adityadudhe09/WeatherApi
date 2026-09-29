@@ -1,23 +1,51 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using WeatherApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// ------------------------------------------------------------
+// Logging
+// ------------------------------------------------------------
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+// ------------------------------------------------------------
+// Configuration
+// ------------------------------------------------------------
+
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile(
+        "appsettings.json",
+        optional: false,
+        reloadOnChange: true)
+    .AddJsonFile(
+        $"appsettings.{builder.Environment.EnvironmentName}.json",
+        optional: true,
+        reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+// ------------------------------------------------------------
+// Services
+// ------------------------------------------------------------
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+builder.Services.AddHealthChecks();
+
+builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+// ------------------------------------------------------------
+// HTTP pipeline
+// ------------------------------------------------------------
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
+
+app.MapHealthChecks("/health");
 
 app.Run();

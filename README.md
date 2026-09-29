@@ -13,3 +13,5 @@
 dotnet new webapi --name WeatherApi --framework net10.0   --use-controllers
 
 --------------------------------------------------------------------------
+
+Continue from 1.12 Onwards
