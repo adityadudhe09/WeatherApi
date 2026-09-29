@@ -9,5 +9,7 @@ sudo dnf install dotnet-runtime-10.0 -y
 dotnet --version
 
 --------------------------------------------------------------------------
-## Create the application:
+### Create the application (First time installation):
 dotnet new webapi --name WeatherApi --framework net10.0   --use-controllers
+
+--------------------------------------------------------------------------
