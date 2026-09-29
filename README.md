@@ -6,7 +6,7 @@
 - sudo dnf install aspnetcore-runtime-10.0 -y
 - sudo dnf install dotnet-runtime-10.0 -y
 
-dotnet --version
+- dotnet --version
 
 --------------------------------------------------------------------------
 ### Create the application (First time installation):
